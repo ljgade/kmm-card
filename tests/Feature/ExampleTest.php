@@ -26,6 +26,7 @@ class ExampleTest extends TestCase
 
     public function test2()
     {
+        dd(encrypt('ljgade'));
         $data = 'a="b";b=c;';
             preg_match('/a=\"(.+?)\";/', $data, $row);
             dd($row);
