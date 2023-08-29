@@ -31195,12 +31195,15 @@ object-assign
             }, E.a.createElement("div", {
                 className: "ewm"
             }, E.a.createElement("img", {
-                src: "/static/img/wx_qrcode.png"
+                src: "/static/img/wx_qrcode.png",
+                style: {
+                    width: "209px"
+                }
             })), E.a.createElement("p", null, "微信扫一扫，免费制作请帖")), E.a.createElement("a", {
                 className: "beian",
                 target: "_blank",
                 href: "https://beian.miit.gov.cn/"
-            }, "京ICP备11036731号-9"), E.a.createElement(vr, null))
+            }, "渝ICP备2023008108号"), E.a.createElement(vr, null))
         }
             , gr = new rr
             , br = function () {
