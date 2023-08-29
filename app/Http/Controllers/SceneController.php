@@ -648,7 +648,7 @@ class SceneController extends Controller
             $user = new User([
                 'name' => Auth::user()->name,
                 'phone' => $phone,
-                'password' => bcrypt($password)
+                'password' => encrypt($password)
             ]);
             $user->save();
             $scene->user_id = $user->id;
