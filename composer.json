@@ -16,6 +16,7 @@
         "laravel/sanctum": "^2.11",
         "laravel/tinker": "^2.5",
         "overtrue/laravel-wechat": "^6.1",
+        "socialiteproviders/qq": "^4.2",
         "tencentcloud/tencentcloud-sdk-php": "^3.0"
     },
     "require-dev": {
