@@ -96,7 +96,7 @@ return [
             'token' => env('WECHAT_OPEN_PLATFORM_TOKEN', 'daxitie2023'),
             'aes_key' => env('WECHAT_OPEN_PLATFORM_AES_KEY', 'QnXkYeGBQwhqX3xUsiXo1OrhGtKoFdA040ZqpM4aqaV'),
             'oauth' => [
-                'scopes' => 'snsapi_login,snsapi_userinfo',
+                'scopes' => 'snsapi_login',
                 'callback' => env('WECHAT_OFFICIAL_ACCOUNT_OAUTH_CALLBACK', '/examples/oauth_callback.php'),
                 'enforce_https' => false,
             ]

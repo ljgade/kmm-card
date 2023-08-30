@@ -155,7 +155,7 @@ class PayController extends Controller
                 'product_code' => $productCode,
                 'trade_no' => $tradeNo,
                 'price' => $price,
-                'paid_status' => UserPayRecord::PAY_STATUS_UNPAID,
+                'pay_status' => UserPayRecord::PAY_STATUS_UNPAID,
                 'trade_info' => $orderResult
             ]);
             if (!$payRecord->save()) {
