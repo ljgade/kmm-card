@@ -137,6 +137,9 @@ class PayController extends Controller
                 'trade_type' => $tradeType,
                 'total_fee' => $price,
             ];
+            if (Auth::hasUser()) {
+                $params['openid'] = Auth::user()->wx_openid;
+            }
             $orderResult = $this->createOrder($params);
             if (empty($orderResult) || $orderResult['return_code'] != 'SUCCESS') {
                 $errorMsg = '提交订单失败';
