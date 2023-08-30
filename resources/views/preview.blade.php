@@ -17,7 +17,7 @@
 
 <!-- <script src="//res.wx.qq.com/open/js/jweixin-1.3.2.js"></script> -->
 <script src="https://cdn.staticfile.org/jquery/3.3.1/jquery.min.js"></script>
-<script src="https://res.wx.qq.com/open/js/jweixin-1.4.0.js"></script>
+<script src="https://res.wx.qq.com/open/js/jweixin-1.6.0.js"></script>
 
 <script type="text/javascript" src="{{asset('static/js/preview.js')}}"></script>
 

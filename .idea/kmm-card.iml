@@ -148,5 +148,6 @@
     <orderEntry type="library" name="iscroll-zoom" level="application" />
     <orderEntry type="library" name="all" level="application" />
     <orderEntry type="library" name="jweixin-1.4.0" level="application" />
+    <orderEntry type="library" name="jweixin-1.6.0" level="application" />
   </component>
 </module>

@@ -6245,7 +6245,7 @@
     "use strict";
     e.exports = {
         Parallax: "//lib.eqh5.com/parallax/1.0.2/parallax.min.js",
-        JWeixin: "//res.wx.qq.com/open/js/jweixin-1.2.0.js",
+        JWeixin: "//res.wx.qq.com/open/js/jweixin-1.6.0.js",
         QQMap: "//map.qq.com/api/js?v=2.exp&callback=qqMapCallback&key=IN3BZ-DYZKV-VHJPZ-U3MJ2-HX3T2-LRFEF",
         AMap: "//webapi.amap.com/maps?v=1.4.12&key=4fe3ab0a5b87e5bf8f222f780322f82a&plugin=AMap.Autocomplete,AMap.PlaceSearch,AMap.Geolocation",
         SHA: "//lib.eqh5.com/jsSHA/2.0.2/sha1.js",
