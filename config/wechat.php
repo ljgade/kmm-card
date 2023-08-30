@@ -97,10 +97,10 @@ return [
      */
     'open_platform' => [
         'default' => [
-            'app_id' => env('WECHAT_OPEN_PLATFORM_APPID', ''),
-            'secret' => env('WECHAT_OPEN_PLATFORM_SECRET', ''),
-            'token' => env('WECHAT_OPEN_PLATFORM_TOKEN', ''),
-            'aes_key' => env('WECHAT_OPEN_PLATFORM_AES_KEY', ''),
+            'app_id' => env('WECHAT_OPEN_PLATFORM_APPID', 'wx0404bf24913c71e4'),
+            'secret' => env('WECHAT_OPEN_PLATFORM_SECRET', 'e229e3c5306b85f4326fb541c16b3207'),
+            'token' => env('WECHAT_OPEN_PLATFORM_TOKEN', 'daxitie2023'),
+            'aes_key' => env('WECHAT_OPEN_PLATFORM_AES_KEY', 'QnXkYeGBQwhqX3xUsiXo1OrhGtKoFdA040ZqpM4aqaV'),
         ],
         'oauth' => [
             'scopes' => 'snsapi_login'
@@ -126,10 +126,10 @@ return [
          'default' => [
              'sandbox'            => env('WECHAT_PAYMENT_SANDBOX', false),
              'app_id'             => env('WECHAT_PAYMENT_APPID', 'wxa4bee97f6c1fa826'),
-             'mch_id'             => env('WECHAT_PAYMENT_MCH_ID', '1650769357'),
+             'mch_id'             => env('WECHAT_PAYMENT_MCH_ID', '1651331555'),
              'key'                => env('WECHAT_PAYMENT_KEY', md5('da-xi-tie-signature')),
-             'cert_path'          => env('WECHAT_PAYMENT_CERT_PATH', 'path/to/cert/apiclient_cert.pem'),    // XXX: 绝对路径！！！！
-             'key_path'           => env('WECHAT_PAYMENT_KEY_PATH', 'path/to/cert/apiclient_key.pem'),      // XXX: 绝对路径！！！！
+             'cert_path'          => env('WECHAT_PAYMENT_CERT_PATH', resource_path('cert/apiclient_cert.pem')),    // XXX: 绝对路径！！！！
+             'key_path'           => env('WECHAT_PAYMENT_KEY_PATH', resource_path('cert/apiclient_key.pem')),      // XXX: 绝对路径！！！！
              'notify_url'         => rtrim(env('APP_URL'), '/') . '/pay/wxNotify',                       // 默认支付结果通知地址
          ],
          // ...

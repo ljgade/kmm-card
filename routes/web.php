@@ -25,6 +25,8 @@ use Overtrue\LaravelWeChat\Controllers\OpenPlatformController;
 Route::get('/', function () { return view('home'); })->name('view.home');
 
 Route::group([] ,function() {
+    Route::any('open-platform/serve', [OpenPlatformController::class]);
+
     Route::get('login', [AuthController::class, 'login']);
 
     Route::post('card/login/mobile_login', [AuthController::class, 'phone_auth'])->name('api.phoneAuth');
