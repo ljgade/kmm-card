@@ -167,7 +167,7 @@ class PayController extends Controller
             if ($agent->isMobile() || $agent->isTablet() || $agent->isWeChat()) {
                 return [
                     'pay_json' => [
-                        'appId' => config('wechat.payment.app_id'),
+                        'appId' => $orderResult['appid'],
                         'timeStamp' => time(),
                         'nonceStr' => $orderResult['nonce_str'],
                         'package' => 'prepay_id=' . $orderResult['prepay_id'],
@@ -198,7 +198,7 @@ class PayController extends Controller
         return $app->order->unify($params);
     }
 
-    private function generateTradeNo($productCode)
+    private function generateTradeNo()
     {
         $userId = Auth::user()->id;
         $todayCount = UserPayRecord::query()->where('user_id', $userId)->where('create_time', '>=', date('Y-m-d'))->count();
