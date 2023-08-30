@@ -36,6 +36,6 @@ return [
         // 应用的 APP KEY
         'client_secret' => env('QQ_CLIENT_SECRET'),
         // 应用的回调地址
-        'redirect' => env('QQ_REDIRECT_URI', route('api.qqLoginNotify'))
+        'redirect' => env('QQ_REDIRECT_URI', rtrim(env('APP_URL'), '/') . '/login/qqNotify'),
     ],
 ];
