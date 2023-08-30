@@ -9,7 +9,6 @@ use App\Http\Controllers\PayController;
 use App\Http\Controllers\SceneController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
-use Overtrue\LaravelWeChat\Controllers\OpenPlatformController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,7 +24,7 @@ use Overtrue\LaravelWeChat\Controllers\OpenPlatformController;
 Route::get('/', function () { return view('home'); })->name('view.home');
 
 Route::group([] ,function() {
-    Route::any('open-platform/serve', [OpenPlatformController::class]);
+    Route::get('open-platform/verify', [AuthController::class, 'wxOpenVerify'])->name('api.wxOpenVerify');
 
     Route::get('login', [AuthController::class, 'login']);
 

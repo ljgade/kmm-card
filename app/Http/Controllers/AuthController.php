@@ -12,6 +12,24 @@ use Jenssegers\Agent\Agent;
 
 class AuthController extends Controller
 {
+    public function wxOpenVerify(Request $request)
+    {
+        $echoStr = $request->input('echoStr');
+        $signature = $request->input('signature');
+        $timestamp = $request->input('timestamp');
+        $nonce = $request->input('nonce');
+        $token = config('wechat.open_platform.default.token');
+        $tmpArr = array($token, $timestamp, $nonce);
+        sort($tmpArr, SORT_STRING);
+        $tmpStr = implode($tmpArr);
+        $tmpStr = sha1($tmpStr);
+        if ($tmpStr == $signature) {
+            exit($echoStr);
+        } else {
+            exit('failed');
+        }
+    }
+
     /**
      * @throws GuzzleException
      */
