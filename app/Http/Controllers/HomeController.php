@@ -38,7 +38,7 @@ class HomeController extends Controller
                 ->where('sub_class_id', $cat['id'])
                 ->where('user_id', 0)
                 ->orderByDesc('id')
-                ->limit(3)->get();
+                ->limit(4)->get();
             if ($querySceneList->count()) {
                 $sceneList[] = [
                     'cate' => [
