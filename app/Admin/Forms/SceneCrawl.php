@@ -199,7 +199,9 @@ class SceneCrawl extends Form
     public function form()
     {
         $this->text('code', '卡美美模板编码')->rules('required');
-        $topCategoryList = Category::query()->where('pid', 0)
+        $topCategoryList = Category::query()
+            ->where('type', 1)
+            ->where('pid', 0)
             ->orderBy('sort')
             ->pluck('name', 'id')->toArray();
         $this->select('mainClassId', '一级品类')->options($topCategoryList)
