@@ -14,7 +14,7 @@ class AuthController extends Controller
 {
     public function wxOpenVerify(Request $request)
     {
-        $echoStr = $request->input('echoStr');
+        $echoStr = $request->input('echostr');
         $signature = $request->input('signature');
         $timestamp = $request->input('timestamp');
         $nonce = $request->input('nonce');

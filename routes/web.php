@@ -24,7 +24,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () { return view('home'); })->name('view.home');
 
 Route::group([] ,function() {
-    Route::get('open-platform/verify', [AuthController::class, 'wxOpenVerify'])->name('api.wxOpenVerify');
+    Route::get('open-platform/serve', [AuthController::class, 'wxOpenVerify'])->name('api.wxOpenVerify');
 
     Route::get('login', [AuthController::class, 'login']);
 
