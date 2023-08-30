@@ -30,4 +30,12 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
+    'qq' => [
+        // 应用的 APP ID
+        'client_id' => env('QQ_CLIENT_ID'),
+        // 应用的 APP KEY
+        'client_secret' => env('QQ_CLIENT_SECRET'),
+        // 应用的回调地址
+        'redirect' => env('QQ_REDIRECT_URI', route('api.qqLoginNotify'))
+    ],
 ];

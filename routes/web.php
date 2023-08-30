@@ -30,6 +30,8 @@ Route::group([] ,function() {
 
     Route::post('card/login/mobile_login', [AuthController::class, 'phone_auth'])->name('api.phoneAuth');
 
+    Route::get('card/login/qq_login', [AuthController::class, 'qqLogin'])->name('api.qqLogin');
+
     Route::get('h5/view/home_new', [HomeController::class, 'homeNew'])->name('api.homeNew');
 
     Route::get('h5/view/info', [SceneController::class, 'info'])->name('api.viewInfo');
@@ -63,6 +65,8 @@ Route::group([] ,function() {
     Route::get('h5/view/luckmoney', [SceneController::class, 'luckMoney'])->name('api.luckMoney');
 
     Route::any('pay/wxNotify', [PayController::class, 'wxNotify'])->name('api.wxNotify');
+
+    Route::any('login/qqNotify', [AuthController::class, 'qqLoginNotify'])->name('api.qqLoginNotify');
 
     Route::get('music/upload', [MusicController::class, 'uploadPage'])->name('view.musicUpload');
 

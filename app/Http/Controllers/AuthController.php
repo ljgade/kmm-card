@@ -9,6 +9,7 @@ use GuzzleHttp\Exception\GuzzleException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Jenssegers\Agent\Agent;
+use Laravel\Socialite\Facades\Socialite;
 
 class AuthController extends Controller
 {
@@ -110,5 +111,15 @@ class AuthController extends Controller
         $request->session()->regenerateToken();
 
         return $this->successMsg('已成功退出');
+    }
+
+    public function qqLogin(Request $request)
+    {
+        return Socialite::driver('qq')->redirect();
+    }
+
+    public function qqLoginNotify(Request $request)
+    {
+        dd($request);
     }
 }
