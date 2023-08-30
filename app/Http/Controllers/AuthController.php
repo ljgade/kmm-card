@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
-use EasyWeChat\OpenPlatform\Application;
 use EasyWeChatComposer\EasyWeChat;
 use GuzzleHttp\Exception\GuzzleException;
 use Illuminate\Http\Request;
@@ -55,24 +54,15 @@ class AuthController extends Controller
         if (Auth::hasUser()) {
             return redirect()->away(route('view.home'));
         }
-        /**
-         * @var $openPlatform Application
-         */
-        $openPlatform = app('wechat.open_platform');
-        $authCode = md5(uniqid());
-        $request->session()->put('authCode', $authCode);
-        return redirect()->away($openPlatform->getPreAuthorizationUrl(route('api.wxOpenLogin')));
-    }
-
-    public function wx_open_login(Request $request)
-    {
-        /**
-         * @var $openPlatform Application
-         */
-        $openPlatform = app('wechat.open_platform');
-        $user = $openPlatform->oauth->user();
-        $unionid = $user['original']['unionid'];
-        $openid = $user['original']['openid'];
+        $wechat = session('wechat.oauth_user.open-platform');
+        $openid = $wechat['id'];
+        $nickName = $wechat['nickname'];
+        $avatar = $wechat['avatar'];
+        $avatar = storeFile($avatar, 'scene');
+        $user = User::updateOrCreate($nickName, $openid, $avatar);
+        Auth::loginUsingId($user->id);
+        $request->session()->regenerate();
+        return redirect()->away(route('view.home'));
     }
 
     public function phone_auth(Request $request)

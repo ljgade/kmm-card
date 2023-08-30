@@ -50,9 +50,7 @@ Route::group([] ,function() {
 
     Route::get('card/login/wechat_login', [AuthController::class, 'wx_auth'])->middleware('wechat.oauth')->name('api.wxAuth');
 
-    Route::get('card/login/wechat_open_login', [AuthController::class, 'wx_open_auth'])->name('api.wxOpenAuth');
-
-    Route::get('login/wx_open_Login', [AuthController::class, 'wx_open_login'])->name('api.wxOpenLogin');
+    Route::get('card/login/wechat_open_login', [AuthController::class, 'wx_open_auth'])->middleware('wechat.oauth:open-platform')->name('api.wxOpenAuth');
 
     Route::get('v/{code}', [SceneController::class, 'view'])->name('view.view');
 

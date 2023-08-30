@@ -53,19 +53,19 @@ return [
     /*
      * 路由配置
      */
-    'route' => [
-        /*
-         * 开放平台第三方平台路由配置
-         */
-        'open_platform' => [
-            'uri' => 'serve',
-            'action' => Overtrue\LaravelWeChat\Controllers\OpenPlatformController::class,
-            'attributes' => [
-                'prefix' => 'open-platform',
-                'middleware' => null,
-            ],
-        ],
-    ],
+//    'route' => [
+//        /*
+//         * 开放平台第三方平台路由配置
+//         */
+//        'open_platform' => [
+//            'uri' => 'serve',
+//            'action' => Overtrue\LaravelWeChat\Controllers\OpenPlatformController::class,
+//            'attributes' => [
+//                'prefix' => 'open-platform',
+//                'middleware' => null,
+//            ],
+//        ],
+//    ],
 
     /*
      * 公众号
@@ -90,22 +90,34 @@ return [
                 'enforce_https' => false,
             ],
         ],
+        'open-platform' => [
+            'app_id' => env('WECHAT_OPEN_PLATFORM_APPID', 'wx0404bf24913c71e4'),
+            'secret' => env('WECHAT_OPEN_PLATFORM_SECRET', 'e229e3c5306b85f4326fb541c16b3207'),
+            'token' => env('WECHAT_OPEN_PLATFORM_TOKEN', 'daxitie2023'),
+            'aes_key' => env('WECHAT_OPEN_PLATFORM_AES_KEY', 'QnXkYeGBQwhqX3xUsiXo1OrhGtKoFdA040ZqpM4aqaV'),
+            'oauth' => [
+                'scopes' => 'snsapi_login,snsapi_userinfo',
+                'callback' => env('WECHAT_OFFICIAL_ACCOUNT_OAUTH_CALLBACK', '/examples/oauth_callback.php'),
+                'enforce_https' => false,
+            ]
+        ],
     ],
 
     /*
      * 开放平台第三方平台
      */
-    'open_platform' => [
-        'default' => [
-            'app_id' => env('WECHAT_OPEN_PLATFORM_APPID', 'wx0404bf24913c71e4'),
-            'secret' => env('WECHAT_OPEN_PLATFORM_SECRET', 'e229e3c5306b85f4326fb541c16b3207'),
-            'token' => env('WECHAT_OPEN_PLATFORM_TOKEN', 'daxitie2023'),
-            'aes_key' => env('WECHAT_OPEN_PLATFORM_AES_KEY', 'QnXkYeGBQwhqX3xUsiXo1OrhGtKoFdA040ZqpM4aqaV'),
-        ],
-        'oauth' => [
-            'scopes' => 'snsapi_login'
-        ]
-    ],
+//    'open_platform' => [
+//        'default' => [
+//            'app_id' => env('WECHAT_OPEN_PLATFORM_APPID', 'wx0404bf24913c71e4'),
+//            'secret' => env('WECHAT_OPEN_PLATFORM_SECRET', 'e229e3c5306b85f4326fb541c16b3207'),
+//            'token' => env('WECHAT_OPEN_PLATFORM_TOKEN', 'daxitie2023'),
+//            'aes_key' => env('WECHAT_OPEN_PLATFORM_AES_KEY', 'QnXkYeGBQwhqX3xUsiXo1OrhGtKoFdA040ZqpM4aqaV'),
+//            'oauth' => [
+//                'scopes' => 'snsapi_login'
+//            ]
+//        ],
+//
+//    ],
 
     /*
      * 小程序
