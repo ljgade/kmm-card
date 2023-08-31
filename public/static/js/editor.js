@@ -31382,7 +31382,7 @@ object-assign
                             className: "beian",
                             target: "_blank",
                             href: "https://beian.miit.gov.cn/"
-                        }, "京ICP备11036731号-9"))
+                        }, "渝ICP备2023008108号"))
                     }
                 }]),
                 i
