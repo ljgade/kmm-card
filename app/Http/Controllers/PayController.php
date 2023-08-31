@@ -168,15 +168,13 @@ class PayController extends Controller
                 throw new \Exception('保存订单信息失败');
             }
             if ($agent->isMobile() || $agent->isTablet() || $agent->isWeChat()) {
+                /**
+                 * @var $app Application
+                 */
+                $app = app('wechat.payment');
+                $prepayId = $orderResult['prepay_id'];
                 return [
-                    'pay_json' => [
-                        'appId' => $orderResult['appid'],
-                        'timeStamp' => strval(time()),
-                        'nonceStr' => $orderResult['nonce_str'],
-                        'package' => 'prepay_id=' . $orderResult['prepay_id'],
-                        'signType' => 'MD5',
-                        'paySign' => $orderResult['sign'],
-                    ],
+                    'pay_json' => $app->jssdk->bridgeConfig($prepayId, false),
                     'type' => $agent->isWeChat() ? 'wechat' : 'm',
                 ];
             } else {
