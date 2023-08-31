@@ -38,30 +38,32 @@
         }
     }
 
-    wx.config();
-    wx.ready(function () {
-        var shareData64 = {
-            title: "{{ $scene['name'] }}",
-            desc: "",
-            imgUrl: "{{ $scene['cover'] }}",
-            link: share_link(window.location.href),
-        };
-        shareData64.title = shareData64.title.replace(/&amp;/ig, "&");
-        shareData64.desc = shareData64.desc.replace(/&amp;/ig, "&");
-        wx.updateTimelineShareData(shareData64);
-        wx.updateAppMessageShareData(shareData64);
-    });
+    @if(isWeixin())
+        wx.config();
+        wx.ready(function () {
+            var shareData64 = {
+                title: "{{ $scene['name'] }}",
+                desc: "{{ $scene['description'] }}",
+                imgUrl: "{{ $scene['cover'] }}",
+                link: share_link(window.location.href),
+            };
+            shareData64.title = shareData64.title.replace(/&amp;/ig, "&");
+            shareData64.desc = shareData64.desc.replace(/&amp;/ig, "&");
+            wx.updateTimelineShareData(shareData64);
+            wx.updateAppMessageShareData(shareData64);
+        });
 
-    wx.error(function (res) {
+        wx.error(function (res) {
 
-    });
+        });
 
-    document.addEventListener("WeixinJSBridgeReady", function () {
-        var music = document.getElementById('bg_music');
-        if (music.paused) {
-            music.play();
-        }
-    }, false);
+        document.addEventListener("WeixinJSBridgeReady", function () {
+            var music = document.getElementById('bg_music');
+            if (music.paused) {
+                music.play();
+            }
+        }, false);
+    @@endif
 
     // document.addEventListener("WeixinJSBridgeReady", function () {
     // 	var music = $(".bgm_btn audio").get(0);

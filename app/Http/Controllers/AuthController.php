@@ -7,6 +7,7 @@ use EasyWeChatComposer\EasyWeChat;
 use GuzzleHttp\Exception\GuzzleException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Http;
 use Jenssegers\Agent\Agent;
 use Laravel\Socialite\Facades\Socialite;
 
@@ -40,12 +41,14 @@ class AuthController extends Controller
         }
         $wechat = session('wechat.oauth_user.default');
         $openid = $wechat['id'];
+        $unionid = $wechat['token_response']['unionid'] ?? '';
         $nickName = $wechat['nickname'];
         $avatar = $wechat['avatar'];
         $avatar = storeFile($avatar, 'scene');
-        $user = User::updateOrCreate($nickName, $openid, $avatar);
+        $user = User::updateOrCreate($nickName, $openid, $avatar, $unionid, 'wx', 'wx');
         Auth::loginUsingId($user->id);
         $request->session()->regenerate();
+        $request->session()->put('pay_openid', $user->wx_openid);
         return redirect()->away(route('view.home'));
     }
 
@@ -56,12 +59,14 @@ class AuthController extends Controller
         }
         $wechat = session('wechat.oauth_user.open-platform');
         $openid = $wechat['id'];
+        $unionid = $wechat['token_response']['unionid'] ?? '';
         $nickName = $wechat['nickname'];
         $avatar = $wechat['avatar'];
         $avatar = storeFile($avatar, 'scene');
-        $user = User::updateOrCreate($nickName, $openid, $avatar);
+        $user = User::updateOrCreate($nickName, $openid, $avatar, $unionid, 'wx', 'open');
         Auth::loginUsingId($user->id);
         $request->session()->regenerate();
+        $request->session()->put('pay_openid', $user->open_openid);
         return redirect()->away(route('view.home'));
     }
 
@@ -110,6 +115,17 @@ class AuthController extends Controller
 
     public function qqLoginNotify(Request $request)
     {
-        dd($request);
+        $user = Socialite::driver('qq')->user();
+        $openid = $user['id'];
+        $nickName = $user['nickname'];
+        $avatar = $user['avatar'];
+        !empty($avatar) && $avatar = storeFile($avatar, 'scene');
+        $userInfo = Http::get('https://graph.qq.com/oauth2.0/me?access_token=' . $user->accessTokenResponseBody['access_token'] . '&unionid=1&fmt=json');
+        $userInfo = json_decode($userInfo, true);
+        $unionid = $userInfo['unionid'] ?? '';
+        $user = User::updateOrCreate($nickName, $openid, $avatar, $unionid, 'qq', 'qq');
+        Auth::loginUsingId($user->id);
+        $request->session()->regenerate();
+        return redirect()->away(route('view.home'));
     }
 }

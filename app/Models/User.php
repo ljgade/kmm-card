@@ -40,26 +40,41 @@ class User extends Authenticatable
     protected $casts = [
     ];
 
-    public static function updateOrCreate($name, $openid, $avatar)
+    public static function updateOrCreate($name, $openid, $avatar, $unionid = '', $type = 'wx', $platform = 'wx')
     {
-        $user = self::query()
-            ->where('wx_openid', $openid)
+        $user = null;
+        !empty($unionid) && $user = self::query()
+            ->where($type . '_unionid', $unionid)
             ->first();
         if (!$user) {
-            $user = new self([
-               'name' => $name,
-               'avatar' => $avatar,
-               'password' => bcrypt(uniqid()),
-               'wx_openid' => $openid
-            ]);
-            $user->save();
+            !empty($openid) && $user = self::query()
+                ->where($platform . '_openid', $openid)
+                ->first();
+            if (!$user) {
+                $user = new self([
+                    'name' => $name,
+                    'avatar' => $avatar,
+                    'password' => bcrypt(uniqid()),
+                    $platform . '_openid' => $openid,
+                    $type . '_unionid' => $unionid,
+                ]);
+                $user->save();
+            } else {
+                $user->update([
+                    'name' => $name,
+                    'avatar' => $avatar,
+                    'wx_openid' => $openid
+                ]);
+            }
         } else {
             $user->update([
                 'name' => $name,
                 'avatar' => $avatar,
-                'wx_openid' => $openid
+                $platform . '_openid' => $openid,
+                $type . '_unionid' => $unionid
             ]);
         }
+
         return $user;
 
     }

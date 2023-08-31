@@ -24,6 +24,8 @@ class UserController extends Controller
     public function getOpenid(Request $request)
     {
         $code = $request->input('code');
+        $wechat = session('wechat.oauth_user.default');
+        session(['pay_openid' => $wechat['id']]);
         return redirect()->away('/#/rechargeVip/' . $code);
     }
 

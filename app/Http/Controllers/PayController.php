@@ -11,6 +11,7 @@ use EasyWeChat\Payment\Application;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Session;
 use Jenssegers\Agent\Agent;
 
 class PayController extends Controller
@@ -137,7 +138,9 @@ class PayController extends Controller
                 'trade_type' => $tradeType,
                 'total_fee' => $price,
             ];
-            if (Auth::hasUser()) {
+            if (Session::has('pay_openid')) {
+                $params['openid'] = Session::get('pay_openid');
+            } elseif (Auth::hasUser()) {
                 $params['openid'] = Auth::user()->wx_openid;
             }
             $orderResult = $this->createOrder($params);

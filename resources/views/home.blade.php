@@ -23,5 +23,24 @@
 <script src="{{asset('static/js/PhotoClip.js')}}"></script>
 <script charset="utf-8" src="https://map.qq.com/api/js?v=2.exp&key=ZYYBZ-ZVHWP-HXKDQ-LFJ7H-2JF33-6OBE2"></script>
 <script type="text/javascript" src="{{asset('static/js/editor.js')}}"></script>
+@if(isWeixin())
+    <script src="//res.wx.qq.com/open/js/jweixin-1.6.0.js"></script>
+    <script>
+        wx.config({!! json_encode(getWXConfig()) !!});
+        wx.ready(function () {
+            var shareData64 = {
+                title: "大喜帖",
+                desc: "让邀请更轻松",
+                imgUrl: "{{ asset('static/img/logo_100.png') }}",
+                link: window.location.href,
+            };
+            wx.updateTimelineShareData(shareData64);
+            wx.updateAppMessageShareData(shareData64);
+        });
+        wx.error(function (res) {
+
+        });
+    </script>
+@endif
 </body>
 </html>
