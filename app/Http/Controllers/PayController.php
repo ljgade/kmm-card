@@ -171,7 +171,7 @@ class PayController extends Controller
                 return [
                     'pay_json' => [
                         'appId' => $orderResult['appid'],
-                        'timestamp' => time(),
+                        'timeStamp' => time(),
                         'nonceStr' => $orderResult['nonce_str'],
                         'package' => 'prepay_id=' . $orderResult['prepay_id'],
                         'signType' => 'MD5',
