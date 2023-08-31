@@ -12,7 +12,13 @@ use App\Models\InviteList;
 use App\Models\Scene;
 use App\Models\ScenePage;
 use App\Models\User;
+use EasyWeChat\Kernel\Exceptions\InvalidArgumentException;
+use EasyWeChat\Kernel\Exceptions\InvalidConfigException;
+use EasyWeChat\Kernel\Exceptions\RuntimeException;
+use EasyWeChat\Kernel\Http\StreamResponse;
+use EasyWeChat\OfficialAccount\Application;
 use Encore\Admin\Form;
+use GuzzleHttp\Exception\GuzzleException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -1325,6 +1331,35 @@ class SceneController extends Controller
         $endPage = ScenePage::query()->where('scene_id', $sceneId)->orderByDesc('num')->first();
         $endPage->delete();
         User::query()->where('id', $user->id)->decrement('kb', 50);
+        return $this->success();
+    }
+
+    /**
+     * @throws InvalidArgumentException
+     * @throws InvalidConfigException
+     * @throws GuzzleException
+     * @throws RuntimeException
+     */
+    public function wxUpload(Request $request)
+    {
+        $serverId = $request->input('serverId');
+        /**
+         * @var $app Application
+         */
+        $app = app('wechat.official_account');
+        $stream = $app->media->get($serverId);
+        if ($stream instanceof StreamResponse) {
+            $fileName = $stream->save(storage_path('app/public/upload/scene'));
+            return $this->success([
+                'serverId' => $serverId,
+                'key' => $fileName
+            ]);
+        }
+        return $this->error('读取图片失败');
+    }
+
+    public function wxDel(Request $request)
+    {
         return $this->success();
     }
 }

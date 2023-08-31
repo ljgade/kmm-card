@@ -170,6 +170,10 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('h5/edit/remove_end_page', [SceneController::class, 'getRemoveEndPage'])->name('api.getRemoveEndPage');
 
     Route::post('h5/edit/remove_end_page', [SceneController::class, 'removeEndPage'])->name('api.removeEndPage');
+
+    Route::post('/h5/edit/wx_upload', [SceneController::class, 'wxUpload'])->name('api.wxUpload');
+
+    Route::post('h5/edit/del_cdn_file', [SceneController::class, 'wxDel'])->name('api.wxDel');
 });
 
 Route::group(['middleware' => 'auth'], function () {

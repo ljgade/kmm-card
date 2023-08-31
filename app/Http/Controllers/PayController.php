@@ -128,7 +128,7 @@ class PayController extends Controller
     {
         $tradeNo = $this->generateTradeNo($productCode);
         $agent = new Agent();
-        $tradeType = ($agent->isMobile() || $agent->isTablet() || $agent->isWeChat()) ? 'JSAPI' : 'NATIVE';
+        $tradeType = $agent->isWeChat() ? 'JSAPI' : 'NATIVE';
         $orderResult = [];
         try {
             $params = [
@@ -167,7 +167,7 @@ class PayController extends Controller
             if (!$payRecord->save()) {
                 throw new \Exception('保存订单信息失败');
             }
-            if ($agent->isMobile() || $agent->isTablet() || $agent->isWeChat()) {
+            if ($agent->isWeChat()) {
                 /**
                  * @var $app Application
                  */
@@ -175,7 +175,7 @@ class PayController extends Controller
                 $prepayId = $orderResult['prepay_id'];
                 return [
                     'pay_json' => $app->jssdk->bridgeConfig($prepayId, false),
-                    'type' => $agent->isWeChat() ? 'wechat' : 'm',
+                    'type' => $agent->isWeChat() ? 'wechat' : 'pc',
                 ];
             } else {
                 return [

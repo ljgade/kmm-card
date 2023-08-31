@@ -34036,7 +34036,7 @@ object-assign
                             return E.a.createElement("li", {
                                 key: e.id
                             }, E.a.createElement("a", {
-                                href: zo ? "".concat(or.preview, "pv/").concat(a, "?g=1&&p=1") : "https://mp.weixin.qq.com/s/0-Rxu2vL2QmZFUwPelfEJQ"
+                                href: zo ? "".concat(or.preview, "pv/").concat(a, "?g=1&&p=1") : "https://weixin.qq.com/r/MRFQSCTEmXnmrWAr90Qj"
                             }, E.a.createElement("img", {
                                 src: "/static/img/".concat(e.ico, ".png")
                             }), E.a.createElement("span", null, e.name)))
