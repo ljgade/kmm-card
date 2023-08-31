@@ -201,8 +201,8 @@ class PayController extends Controller
 
     private function generateTradeNo()
     {
-        $userId = Auth::user()->id;
-        $todayCount = UserPayRecord::query()->where('user_id', $userId)->where('create_time', '>=', date('Y-m-d'))->count();
+        $userId = Auth::user() ? Auth::user()->id : mt_rand(1, 99999);
+        $todayCount = UserPayRecord::query()->where('create_time', '>=', date('Y-m-d'))->count();
         return sprintf('%s%s%s', date('Ymd'), str_pad($userId, 8, '0', STR_PAD_LEFT), str_pad($todayCount + 1, 5, '0', STR_PAD_LEFT));
     }
 
