@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use Closure;
 use Jenssegers\Agent\Agent;
 use Overtrue\LaravelWeChat\Middleware\OAuthAuthenticate;
 

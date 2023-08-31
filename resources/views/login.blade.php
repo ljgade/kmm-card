@@ -3,8 +3,8 @@
 
 <head>
     <meta charset="utf-8">
-    <title>卡美美 登录</title>
-    <meta name="Description" content="卡美美 登录" />
+    <title>大喜帖 登录</title>
+    <meta name="Description" content="大喜帖 登录" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
@@ -221,7 +221,7 @@
 <body onselectstart="return true;" ondragstart="return false;">
 <div class="phlog">
     <div class="phlog_logo" onclick="location.reload()">
-        <img src="{{ asset('static/img/dxt_logo.png') }}" alt="大喜贴出品 原名：一生一世微喜帖" width="100%">
+        <img src="{{ asset('static/img/dxt_logo.png') }}" alt="大喜贴出品" width="100%">
     </div>
     <div class="phlog_mian">
         <ul class="log_btn">
@@ -247,11 +247,6 @@
                 <a href="javascript:;" onclick="alert('升级中')">商家版登录</a>
             </li>
         </ul>
-        <div class="log_acc">
-            大喜帖是北京奥蓝图科技有限公司旗下网站<br>
-            专业提供电子喜帖、电子请柬，微信喜帖、结婚电子喜帖等服务<br>
-            地址：北京市海淀区 西三旗建材城西路87号 上奥世纪中心
-        </div>
     </div>
 </div>
 <div class="select_mask" id="select_mask"></div>
