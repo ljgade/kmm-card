@@ -136,7 +136,7 @@ class PayController extends Controller
                 'product_id' => $productCode,
                 'out_trade_no' => $tradeNo,
                 'trade_type' => $tradeType,
-                'total_fee' => $price,
+                'total_fee' => $price * 100,
             ];
             if (Session::has('pay_openid')) {
                 $params['openid'] = Session::get('pay_openid');
