@@ -35711,15 +35711,9 @@ object-assign
         }, {
             id: 2,
             name: "更多模板",
-            icon: "/static/img/user_getmore.png.png",
-            link: "/getMoreTpl",
+            icon: "/static/img/user_getmore.png",
+            link: "/#/allCategory",
             isLink: !0
-        }, {
-            id: 3,
-            name: "喜事墙",
-            icon: "/static/img/user_xsq_ico.png",
-            link: "http://w.xishizhibang.com",
-            isLink: !1
         }]
             , wi = new vi
             , Ei = new Ur
