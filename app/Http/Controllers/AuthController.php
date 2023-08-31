@@ -116,9 +116,9 @@ class AuthController extends Controller
     public function qqLoginNotify(Request $request)
     {
         $user = Socialite::driver('qq')->user();
-        $openid = $user['id'];
-        $nickName = $user['nickname'];
-        $avatar = $user['avatar'];
+        $openid = $user->id;
+        $nickName = $user->nickname;
+        $avatar = $user->avatar;
         !empty($avatar) && $avatar = storeFile($avatar, 'scene');
         $userInfo = Http::get('https://graph.qq.com/oauth2.0/me?access_token=' . $user->accessTokenResponseBody['access_token'] . '&unionid=1&fmt=json');
         $userInfo = json_decode($userInfo, true);

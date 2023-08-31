@@ -105,7 +105,7 @@ function getWXTicket()
 {
     $accessToken = getWXAccessToken();
     $currentTime = time();
-    $file = resource_path('json/wx_access_token.json');
+    $file = resource_path('json/wx_ticket.json');
     if (file_exists($file)) {
         $ticketInfo = json_decode(file_get_contents($file), true);
         if (!empty($ticketInfo) && $ticketInfo['expire_time'] > $currentTime) {
