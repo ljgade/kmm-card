@@ -139,7 +139,7 @@ return [
              'sandbox'            => env('WECHAT_PAYMENT_SANDBOX', false),
              'app_id'             => env('WECHAT_PAYMENT_APPID', 'wx0404bf24913c71e4'),
              'mch_id'             => env('WECHAT_PAYMENT_MCH_ID', '1651331555'),
-             'key'                => env('WECHAT_PAYMENT_KEY', md5('da-xi-tie-signature')),
+             'key'                => env('WECHAT_PAYMENT_KEY', '2e03d538a263576143af824a480f73c3'),
              'cert_path'          => env('WECHAT_PAYMENT_CERT_PATH', resource_path('cert/apiclient_cert.pem')),    // XXX: 绝对路径！！！！
              'key_path'           => env('WECHAT_PAYMENT_KEY_PATH', resource_path('cert/apiclient_key.pem')),      // XXX: 绝对路径！！！！
              'notify_url'         => rtrim(env('APP_URL'), '/') . '/pay/wxNotify',                       // 默认支付结果通知地址
