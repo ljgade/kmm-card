@@ -87,7 +87,7 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::get('card/my/index', [UserController::class, 'index'])->name('view.myIndex');
 
-    Route::get('card/my/get_openid', [UserController::class, 'getOpenid'])->name('api.getOpenid')->middleware('my.wechat.oauth');
+    Route::get('card/my/get_openid', [UserController::class, 'getOpenid'])->name('api.getOpenid')->middleware('my.wechat.oauth:default,snsapi_base');
 
     Route::get('card/my/recharge', [UserController::class, 'recharge'])->name('api.recharge');
 
