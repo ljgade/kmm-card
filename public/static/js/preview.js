@@ -14057,7 +14057,7 @@
                 }, t.returnBack = function () {
                     window.history.go(-1)
                 }, t.goToMake = function () {
-                    t.props.previewStore.isMiniprogram ? wx.miniProgram.redirectTo({url: "../../../pages/home/h5-buy/h5buy?code=".concat(scene.code)}) : window.location.href = "".concat(bn.editor, "/#/cardBuy/").concat(scene.code)
+                    t.props.previewStore.isMiniprogram ? wx.miniProgram.redirectTo({url: "../../../pages/home/h5-buy/h5buy?code=".concat(scene.code)}) : window.location.href = "".concat(bn.editor, "#/cardBuy/").concat(scene.code)
                 }, t.showCardDesc = function () {
                     t.props.previewStore.showCardDesc()
                 }, t.showYqh = function () {

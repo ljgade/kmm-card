@@ -3,6 +3,7 @@
 use App\Models\Scene;
 use GuzzleHttp\Client;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Storage;
 use Jenssegers\Agent\Agent;
 
@@ -132,9 +133,9 @@ function getWXConfig()
         'jsapi_ticket' => getWXTicket(),
         'noncestr' => uniqid(),
         'timestamp' => time(),
-        'url' => rtrim(env('APP_URL'), '/') . '/'
+        'url' => request()->fullUrl() . (Route::currentRouteName() == 'view.home' ? '/' : '')
     ];
-    $signStr = http_build_query($params);
+    $signStr = urldecode(http_build_query($params));
     $signature = sha1($signStr);
     return [
         'debug' => false,

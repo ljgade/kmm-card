@@ -39,7 +39,7 @@
     }
 
     @if(isWeixin())
-        wx.config();
+        wx.config({!! json_encode(getWXConfig()) !!});
         wx.ready(function () {
             var shareData64 = {
                 title: "{{ $scene['name'] }}",
@@ -63,7 +63,7 @@
                 music.play();
             }
         }, false);
-    @@endif
+    @endif
 
     // document.addEventListener("WeixinJSBridgeReady", function () {
     // 	var music = $(".bgm_btn audio").get(0);
