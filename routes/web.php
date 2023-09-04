@@ -79,6 +79,10 @@ Route::group([] ,function() {
     Route::post('card/pay/luckmoney', [PayController::class, 'luckMoney'])->name('api.payLuckMoney');
 
     Route::post('card/pay/egift', [PayController::class, 'gift'])->name('api.payGift');
+
+    Route::get('h5/api/kf_wechat', function () {
+        return (new \App\Http\Controllers\Controller())->success(['qrcode' => asset('static/img/kf_qrcode.png')]);
+    });
 });
 
 Route::group(['middleware' => 'auth'], function () {

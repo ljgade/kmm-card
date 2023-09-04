@@ -599,6 +599,7 @@ class SceneController extends Controller
         if (!empty($name)) {
             $scene->name = $name;
             $property = $scene->property;
+            !is_array($property) && $property = json_decode($property, true);
             $property['shareDes']['title'] = $name;
             $scene->property = $property;
         }
@@ -606,6 +607,7 @@ class SceneController extends Controller
         if (!empty($desc)) {
             $scene->description = $desc;
             $property = $scene->property;
+            !is_array($property) && $property = json_decode($property, true);
             $property['shareDes']['description'] = $desc;
             $scene->property = $property;
         }

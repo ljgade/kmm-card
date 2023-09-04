@@ -238,9 +238,15 @@
                 </a>
             </li>
             <li class="log_mobile">
-                <a href="/#/login">
+                <a href="/#/login?action=login">
                     <i class="fa fa-mobile"></i>
-                    手机号码登录/注册
+                    手机号码登录
+                </a>
+            </li>
+            <li class="log_mobile">
+                <a href="/#/register?action=register">
+                    <i class="fa fa-mobile"></i>
+                    手机号码注册
                 </a>
             </li>
             <li class="log_tel">

@@ -14516,7 +14516,7 @@
                         target: "_blank"
                     })), H.a.createElement("a", {
                         target: "_blank",
-                        href: "https://mp.weixin.qq.com/s/SlLo-1r77lmpIRVuE_stIw",
+                        href: "https://m.daxitie.com",
                         className: "view_reg"
                     }, "点击免费制作大喜帖请帖"), H.a.createElement(vi.CopyToClipboard, {text: this.ewm_link}, H.a.createElement("button", {
                         className: "copy_link",

@@ -74,20 +74,29 @@ class AuthController extends Controller
     {
         $phone = $request->input('username');
         $password = $request->input('password');
+        $action = $request->input('act');
         $user = User::query()->where('phone', $phone)->first();
-        if (!empty($user)) {
-            if (decrypt($user->password) != $password) {
-                return $this->error('密码不正确');
+        if ($action == 'login') {
+            if (!empty($user)) {
+                if (decrypt($user->password) != $password) {
+                    return $this->error('密码不正确');
+                }
+                Auth::loginUsingId($user->id);
+            } else {
+                return $this->error('手机号不存在');
             }
-            Auth::loginUsingId($user->id);
         } else {
-            $user = new User([
-                'name' => $phone,
-                'phone' => $phone,
-                'password' => encrypt($password)
-            ]);
-            $user->save();
-            Auth::loginUsingId($user->id);
+            if (!empty($user)) {
+                return $this->error('手机号已存在，请勿重复注册');
+            } else {
+                $user = new User([
+                    'name' => $phone,
+                    'phone' => $phone,
+                    'password' => encrypt($password)
+                ]);
+                $user->save();
+                Auth::loginUsingId($user->id);
+            }
         }
 
         return $this->success();

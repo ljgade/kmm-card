@@ -35555,6 +35555,10 @@ object-assign
             }, {
                 key: "mobileLogin",
                 value: function (e) {
+                    var t = window.location.href.split("?")[1] || ""
+                        , n = new RegExp("^action=([^&]*)(&|$)")
+                        , action = t.match(n);
+                    e.act = action[1];
                     return mi.request({
                         type: "post",
                         url: "".concat(or.editor, "card/login/mobile_login"),
@@ -36312,6 +36316,7 @@ object-assign
         }(y.Component)
             , Ii = (n(531),
             new vi)
+            , Action = window.location.href.split("?")[1].match(new RegExp("^action=([^&]*)(&|$)"))[1]
             , Di = function (e) {
             function i() {
                 var e, n;
@@ -36321,7 +36326,14 @@ object-assign
                 return (n = l()(this, (e = s()(i)).call.apply(e, [this].concat(r)))).state = {},
                     n.onLogin = function () {
                         var e = n.username.value
-                            , t = n.password.value;
+                            , t = n.password.value
+                            , confirmPwd = n.confirm_password.value;
+                        console.log(confirmPwd)
+                        console.log(Action)
+                        if (Action === 'register' && t !== confirmPwd) {
+                            Gn.a.fail('两次输入密码不一致', 1.2)
+                            return false;
+                        }
                         e ? t ? Ii.mobileLogin({
                             username: e,
                             password: t
@@ -36343,12 +36355,15 @@ object-assign
                 a()(i, [{
                     key: "componentDidMount",
                     value: function () {
-                        document.title = "手机登录"
+                        document.title = Action === 'login' ? "手机登录" : "手机注册"
                     }
                 }, {
                     key: "render",
                     value: function () {
                         var t = this;
+                        var x = window.location.href.split("?")[1] || ""
+                            , n = new RegExp("^action=([^&]*)(&|$)")
+                        t.action = x.match(n)[1];
                         return E.a.createElement("div", {
                             className: "mobile_login_page",
                             style: {
@@ -36362,7 +36377,7 @@ object-assign
                             src: "/static/img/logo.png"
                         })), E.a.createElement("div", {
                             className: "wrap"
-                        }, E.a.createElement("h2", null, "手机号码登录"), E.a.createElement("input", {
+                        }, E.a.createElement("h2", null, Action === 'login' ? "手机号码登录" : "手机号注册"), E.a.createElement("input", {
                             type: "text",
                             placeholder: "请输入手机号",
                             ref: function (e) {
@@ -36374,10 +36389,19 @@ object-assign
                             ref: function (e) {
                                 return t.password = e
                             }
+                        }), E.a.createElement("input", {
+                            type: "password",
+                            placeholder: "请再次输入密码",
+                            style: {
+                                display: Action === 'login' ? 'none' : 'block'
+                            },
+                            ref: function (e) {
+                                return t.confirm_password = e
+                            }
                         }), E.a.createElement("a", {
                             href: "javascript:;",
                             onClick: this.onLogin
-                        }, "登录/注册"))))
+                        }, Action === 'login' ? "登录" : "注册"))))
                     }
                 }]),
                 i
@@ -36575,6 +36599,10 @@ object-assign
                             path: "/login",
                             component: Di
                         }), E.a.createElement(At, {
+                            exact: !0,
+                            path: "/register",
+                            component: Di
+                        }), E.a.createElement(At, {
                             path: "/",
                             render: function (e) {
                                 return t
@@ -36586,6 +36614,10 @@ object-assign
                         }), E.a.createElement(At, {
                             exact: !0,
                             path: "/login",
+                            component: Di
+                        }), E.a.createElement(At, {
+                            exact: !0,
+                            path: "/register",
                             component: Di
                         }), E.a.createElement(At, {
                             path: "/",
