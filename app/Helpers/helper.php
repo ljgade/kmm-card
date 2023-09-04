@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Scene;
+use EasyWeChat\OfficialAccount\Application;
 use GuzzleHttp\Client;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Route;
@@ -129,24 +130,12 @@ function getWXTicket()
 
 function getWXConfig()
 {
-    $params = [
-        'jsapi_ticket' => getWXTicket(),
-        'noncestr' => uniqid(),
-        'timestamp' => time(),
-        'url' => request()->fullUrl() . (Route::currentRouteName() == 'view.home' ? '/' : '')
-    ];
-    $signStr = urldecode(http_build_query($params));
-    $signature = sha1($signStr);
-    return [
-        'debug' => false,
-        'beta' => false,
-        'jsApiList' => ["onMenuShareTimeline", "onMenuShareAppMessage", "onMenuShareQQ", "onMenuShareQZone", "chooseImage", "previewImage", "uploadImage", "chooseWXPay", "updateAppMessageShareData", "updateTimelineShareData", "getLocalImgData"],
-        'appId' => config('wechat.official_account.default.app_id'),
-        "nonceStr" => $params['noncestr'],
-        "timestamp" => $params['timestamp'],
-        "url" => $params['url'],
-        "signature" => $signature
-    ];
+    /**
+     * @var $app Application
+     */
+    $app = app('wechat.official_account');
+    $jsApiList = ["onMenuShareTimeline", "onMenuShareAppMessage", "onMenuShareQQ", "onMenuShareQZone", "chooseImage", "previewImage", "uploadImage", "chooseWXPay", "updateAppMessageShareData", "updateTimelineShareData", "getLocalImgData"];
+    return $app->jssdk->buildConfig($jsApiList, false, false, false, [], request()->fullUrl() . (Route::currentRouteName() == 'view.home' ? '/' : ''));
 }
 
 

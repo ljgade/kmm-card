@@ -1352,7 +1352,7 @@ class SceneController extends Controller
             $fileName = $stream->save(storage_path('app/public/upload/scene'));
             return $this->success([
                 'serverId' => $serverId,
-                'key' => $fileName
+                'key' => ltrim(parse_url(Storage::disk('scene')->url($fileName), PHP_URL_PATH), '/')
             ]);
         }
         return $this->error('读取图片失败');

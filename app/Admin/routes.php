@@ -2,6 +2,7 @@
 
 //use App\Admin\Controllers\SceneCategoryController;
 //use App\Admin\Controllers\MusicCategoryController;
+//use App\Admin\Controllers\UserController;
 use Encore\Admin\Facades\Admin;
 use Illuminate\Routing\Router;
 use Illuminate\Support\Facades\Route;
@@ -16,6 +17,8 @@ Route::group([
 ], function (Router $router) {
 
     $router->get('/', [\App\Admin\Controllers\HomeController::class, 'index'])->name('home');
+    $router->resource('user', UserController::class);
+    $router->resource('scene', SceneController::class);
     $router->resource('category/scene', SceneCategoryController::class);
     $router->resource('category/music', MusicCategoryController::class);
     $router->any('category/subCategory', [\App\Admin\Controllers\SceneCategoryController::class, 'getSubCategoryList']);

@@ -6,6 +6,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\DB;
 use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
@@ -39,6 +40,49 @@ class User extends Authenticatable
      */
     protected $casts = [
     ];
+
+    protected $ignoreFields = [
+        'avatar',
+        'password',
+        'remember_token',
+        'wx_openid',
+        'open_openid',
+        'qq_openid',
+        'wx_unionid',
+        'qq_unionid',
+        'music_token',
+    ];
+    protected $fieldMap = [];
+
+    public function __construct(array $attributes = [])
+    {
+        parent::__construct($attributes);
+        $this->initFieldMap();
+    }
+
+    private function initFieldMap()
+    {
+        $columns = $this->getFullColumns();
+        foreach ($columns as $column) {
+            $column = (array)$column;
+            $name = $column['Field'];
+            $comment = $column['Comment'] ?? $name;
+            if (!in_array($name, $this->ignoreFields)) {
+                $this->fieldMap[$name] = $comment;
+            }
+        }
+    }
+
+    private function getFullColumns()
+    {
+        $sql = 'SHOW FULL COLUMNS FROM `'. $this->getTable() . '`';
+        return DB::select($sql);
+    }
+
+    public function getFieldMap()
+    {
+        return $this->fieldMap;
+    }
 
     public static function updateOrCreate($name, $openid, $avatar, $unionid = '', $type = 'wx', $platform = 'wx')
     {

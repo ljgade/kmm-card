@@ -249,9 +249,7 @@ class PayController extends Controller
             case 'vip_twelve_month':
                 $user = User::query()->find($order->user_id);
                 if (!empty($user)) {
-                    $startDate = $user->end_time == '1970-01-01'
-                        ? date('Y-m-d')
-                        : ($user->end_time >= date('Y-m-d') ? $user->end_time : date('Y-m-d'));
+                    $startDate = $user->isVIP() ? $user->end_time : date('Y-m-d');
                     $endTime = date('Y-m-d', strtotime($startDate) + self::VIP_PERIOD[$order->product_code]);
                     $user->end_time = $endTime;
                     $user->group = User::GROUP_VIP;

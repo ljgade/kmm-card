@@ -34951,10 +34951,10 @@ object-assign
                     value: function (t, e) {
                         var n = this.state.scene_info
                             , r = this.props.match.params.id;
-                        e ? window.location.href = "".concat(or.preview, "v/").concat(n.code, "?p=1&bkid=").concat(t) : (Gn.a.loading("请稍后", 0),
+                        e ? window.location.href = "".concat(or.preview, "v/").concat(n.code, "?bkid=").concat(t).concat('&p=1') : (Gn.a.loading("请稍后", 0),
                             oi.getInviteAudioUrl(r, t).then(function (e) {
                                 Gn.a.hide(),
-                                    window.location.href = "".concat(or.preview, "v/").concat(n.code, "?p=1&bkid=").concat(t)
+                                    window.location.href = "".concat(or.preview, "v/").concat(n.code, "?bkid=").concat(t).concat('&p=1')
                             }))
                     }
                 }, {
@@ -36052,7 +36052,7 @@ object-assign
                             className: "kb"
                         }, "当前账户 ", i.kb, " 喜币"), E.a.createElement("div", {
                             className: "time"
-                        }, "您的会员 ", i.end_time, " 到期"))), E.a.createElement("section", {
+                        }, (new Date(i.end_time).getTime() > (new Date).getTime())  ? ("您的会员 ", i.end_time, " 到期") : ("暂未开通会员")))), E.a.createElement("section", {
                             className: "recharge_vip"
                         }, E.a.createElement("h2", null, "会员套餐：付费模板不限次免费用"), E.a.createElement("ul", null, [{
                             time: 1,

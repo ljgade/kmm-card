@@ -12666,10 +12666,10 @@
                 }, {
                     key: "setDialogEvent", value: function (e) {
                         if (e) if ("立即赠送" == this.confirmText) this.payGift(this.payName); else if ("立即支付" == this.confirmText) this.payMony(this.sendname, this.sendmoney); else if (this.isMiniprogram) wx.miniProgram.switchTab({url: "../../../pages/home/home"}); else {
-                            var t = Tn ? "https://mp.weixin.qq.com/s/8YI-MWn0E95bE-LY4QCRow" : bn.editor;
+                            var t = Tn ? "https://m.daxitie.com" : bn.editor;
                             if (1 == scene.is_wish_h5) {
                                 if (Tn) return void this.showAttendEwm(!0);
-                                t = "http://xishizhibang.com"
+                                t = "https://m.daxitie.com"
                             }
                             window.open(t, "_blank")
                         } else this.dialogShow = 0, this.cancelText = "取消", this.confirmText = "确定"
@@ -13927,10 +13927,10 @@
                     n.props.previewStore.submitReport()
                 }, n.goToMore = function () {
                     if (n.props.previewStore.isMiniprogram) wx.miniProgram.switchTab({url: "../../../pages/home/home"}); else {
-                        var e = Hr ? "https://mp.weixin.qq.com/s/8YI-MWn0E95bE-LY4QCRow" : bn.editor;
+                        var e = Hr ? "https://m.daxitie.com" : bn.editor;
                         if (1 == scene.is_wish_h5) {
                             if (Hr) return void n.props.previewStore.showAttendEwm(!0);
-                            e = "http://xishizhibang.com"
+                            e = "https://m.daxitie.com"
                         }
                         window.open(e, "_blank")
                     }
