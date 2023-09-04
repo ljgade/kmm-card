@@ -135,7 +135,7 @@ function getWXConfig()
      */
     $app = app('wechat.official_account');
     $jsApiList = ["onMenuShareTimeline", "onMenuShareAppMessage", "onMenuShareQQ", "onMenuShareQZone", "chooseImage", "previewImage", "uploadImage", "chooseWXPay", "updateAppMessageShareData", "updateTimelineShareData", "getLocalImgData"];
-    return $app->jssdk->buildConfig($jsApiList, false, false, false, [], request()->fullUrl() . (Route::currentRouteName() == 'view.home' ? '/' : ''));
+    return $app->jssdk->buildConfig($jsApiList, false, false, false, [], Route::currentRouteName() == 'view.home' ? request()->fullUrl() . '/' : '');
 }
 
 

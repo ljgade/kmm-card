@@ -36377,7 +36377,7 @@ object-assign
                         }), E.a.createElement("a", {
                             href: "javascript:;",
                             onClick: this.onLogin
-                        }, "登录"))))
+                        }, "登录/注册"))))
                     }
                 }]),
                 i

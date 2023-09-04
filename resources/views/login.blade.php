@@ -240,7 +240,7 @@
             <li class="log_mobile">
                 <a href="/#/login">
                     <i class="fa fa-mobile"></i>
-                    手机号码登录
+                    手机号码登录/注册
                 </a>
             </li>
             <li class="log_tel">

@@ -17,11 +17,10 @@ Route::group([
 ], function (Router $router) {
 
     $router->get('/', [\App\Admin\Controllers\HomeController::class, 'index'])->name('home');
+    $router->get('scene/crawl', [\App\Admin\Controllers\SceneCrawlController::class, 'index']);
     $router->resource('user', UserController::class);
     $router->resource('scene', SceneController::class);
     $router->resource('category/scene', SceneCategoryController::class);
     $router->resource('category/music', MusicCategoryController::class);
     $router->any('category/subCategory', [\App\Admin\Controllers\SceneCategoryController::class, 'getSubCategoryList']);
-
-    $router->get('scene/crawl', [\App\Admin\Controllers\SceneCrawlController::class, 'index']);
 });
